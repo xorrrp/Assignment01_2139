@@ -1,0 +1,50 @@
+@model Assignment1.Models.Order
+
+@{
+var products = ViewData["Products"] as List<Product> ?? new List<Product>();
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Place Your Order</h2>
+
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input asp-for="CustomerName" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input asp-for="CustomerEmail" type="email" class="form-control" required />
+            </div>
+
+            <h3 class="mt-4">Select Products</h3>
+            <table class="table table-bordered mt-3">
+                <thead class="table-dark">
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var product in products)
+                {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>
+                        <input type="number" name="OrderItems[@product.ProductId].Quantity" class="form-control" value="0" min="0" required />
+                    </td>
+                </tr>
+                }
+                </tbody>
+            </table>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success btn-lg">
+                    Place Order
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

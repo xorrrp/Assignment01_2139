@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="d-flex flex-column align-items-center justify-content-center vh-100 text-center">
+    <div class="card p-5 shadow-lg">
+        <h1 class="display-3 fw-bold text-dark">Welcome!</h1>
+        <p class="lead text-muted">Your one-stop shop for all the best products.</p>
+
+        <a href="@Url.Action("Index", "Products")" class="btn btn-lg btn-dark mt-3">
+            Browse Products
+        </a>
+    </div>
+</div>

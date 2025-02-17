@@ -1,0 +1,35 @@
+@model Assignment1.Models.Order
+
+@{
+    ViewBag.Title = "Order Confirmation";
+}
+
+<h2>Order Confirmation</h2>
+
+<p>Thank you for your order, <strong>@Model.CustomerName</strong>!</p>
+<p>Your order was placed successfully on <strong>@Model.OrderDate.ToString("MMMM dd, yyyy hh:mm tt")</strong>.</p>
+
+<h3>Order Summary</h3>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.OrderItems)
+    {
+        <tr>
+            <td>@item.Product.Name</td>
+            <td>@item.Quantity</td>
+            <td>@item.Price.ToString("C")</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<p><strong>Total Price:</strong> @Model.TotalPrice.ToString("C")</p>
+
+<a href="@Url.Action("Index", "Products")" class="btn btn-primary">Continue Shopping</a>
